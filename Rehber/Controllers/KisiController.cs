@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Rehber.API.Models.ORM.Context;
 using Rehber.API.Models.ORM.Entities;
 using Rehber.API.Models.VM;
@@ -29,7 +30,7 @@ namespace Rehber.API.Controllers
                 name = q.Name,
                 surname = q.Surname,
                 company = q.Company,
-                //IletisimList = q.IletisimList
+                IletisimList = q.IletisimList
             }).ToList();
 
             return kisiler;
@@ -58,5 +59,12 @@ namespace Rehber.API.Controllers
                 return BadRequest(ModelState.Values);
             }
         }
+
+        //[Route("")]
+        //[HttpPost]
+        //public IActionResult DeleteKisi()
+        //{
+
+        //}
     }
 }
