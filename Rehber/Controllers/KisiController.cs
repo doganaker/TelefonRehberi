@@ -60,11 +60,25 @@ namespace Rehber.API.Controllers
             }
         }
 
-        //[Route("")]
-        //[HttpPost]
-        //public IActionResult DeleteKisi()
-        //{
+        [Route("Kisi/Delete")]
+        [HttpPost]
+        public IActionResult DeleteKisi([FromForm] KisiDeleteVM model)
+        {
+            var kisi = _rehberContext.Kisis.Find(model.KisiId);
 
-        //}
+            if(kisi != null)
+            {
+                kisi.IsDeleted = true;
+                _rehberContext.SaveChanges();
+
+                //_rehberContext.Remove(kisi); if data should be erased from database permanently.
+
+                return Ok(kisi);
+            }
+            else
+            {
+                return BadRequest("Aradığınız kişi bulunamadı :(");
+            }
+        }
     }
 }
