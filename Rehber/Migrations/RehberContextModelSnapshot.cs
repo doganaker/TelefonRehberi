@@ -73,13 +73,11 @@ namespace Rehber.API.Migrations
 
             modelBuilder.Entity("Rehber.API.Models.ORM.Entities.IletisimBilgisi", b =>
                 {
-                    b.HasOne("Rehber.API.Models.ORM.Entities.Kisi", "Kisi")
+                    b.HasOne("Rehber.API.Models.ORM.Entities.Kisi", null)
                         .WithMany("IletisimList")
                         .HasForeignKey("KisiID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Kisi");
                 });
 
             modelBuilder.Entity("Rehber.API.Models.ORM.Entities.Kisi", b =>

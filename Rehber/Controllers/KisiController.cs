@@ -30,10 +30,35 @@ namespace Rehber.API.Controllers
                 name = q.Name,
                 surname = q.Surname,
                 company = q.Company,
-                IletisimList = q.IletisimList
             }).ToList();
 
             return kisiler;
+        }
+
+        [Route("kisidetay/{id}")]
+        [HttpGet]
+        public KisiDetailVM GetDetail(int id)
+        {
+            Kisi kisi = _rehberContext.Kisis.Find(id);
+
+            if(kisi != null)
+            {
+                var detail = _rehberContext.Kisis.Where(q => q.IsDeleted == false).Select(q => new KisiDetailVM()
+                {
+                    id = q.ID,
+                    name = q.Name,
+                    surname = q.Surname,
+                    company = q.Company,
+                    iletisimList = q.IletisimList
+                }).FirstOrDefault(x => x.id == id);
+
+                return detail;
+            }
+            else
+            {
+                return null;
+            }
+            
         }
 
         [Route("Kisi/Add")]
@@ -69,9 +94,11 @@ namespace Rehber.API.Controllers
             if(kisi != null)
             {
                 kisi.IsDeleted = true;
+                
+                //_rehberContext.Remove(kisi); if data should be erased from database permanently.
+                
                 _rehberContext.SaveChanges();
 
-                //_rehberContext.Remove(kisi); if data should be erased from database permanently.
 
                 return Ok(kisi);
             }

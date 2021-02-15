@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace Rehber.API.Models.VM
 {
-    public class KisiListVM
+    public class KisiDetailVM
     {
-        public int ID { get; set; }
+        public int id { get; set; }
         public string name { get; set; }
         public string surname { get; set; }
         public string company { get; set; }
+        public List<IletisimBilgisi> iletisimList { get; set; }
     }
 }

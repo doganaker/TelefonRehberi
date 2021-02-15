@@ -14,6 +14,7 @@ namespace Rehber.API.Models.ORM.Entities
         public int KisiID { get; set; }
 
         [ForeignKey("KisiID")]
+        [NotMapped]
         public Kisi Kisi { get; set; }
     }
 }
