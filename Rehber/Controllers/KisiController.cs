@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Confluent.Kafka;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using Rehber.API.Models.ORM.Context;
 using Rehber.API.Models.ORM.Entities;
 using Rehber.API.Models.VM;
@@ -14,10 +16,12 @@ namespace Rehber.API.Controllers
     public class KisiController : Controller
     {
         private readonly RehberContext _rehberContext;
+        private ProducerConfig _config;
 
-        public KisiController(RehberContext rehberContext)
+        public KisiController(RehberContext rehberContext, ProducerConfig config)
         {
             _rehberContext = rehberContext;
+            this._config = config;
         }
 
         [Route("kisilistesi")]
@@ -41,7 +45,7 @@ namespace Rehber.API.Controllers
         {
             Kisi kisi = _rehberContext.Kisis.Find(id);
 
-            if(kisi != null)
+            if (kisi != null)
             {
                 var detail = _rehberContext.Kisis.Where(q => q.IsDeleted == false).Select(q => new KisiDetailVM()
                 {
@@ -63,7 +67,20 @@ namespace Rehber.API.Controllers
             {
                 return null;
             }
-            
+
+        }
+
+        [HttpPost("Send")]
+        public async Task<IActionResult> Get(string topic)
+        {
+            var kisiList = GetKisiList();
+            string serializedKisi = JsonConvert.SerializeObject(kisiList);
+            using (var producer = new ProducerBuilder<Null, string>(_config).Build())
+            {
+                await producer.ProduceAsync(topic, new Message<Null, string> { Value = serializedKisi });
+                producer.Flush(TimeSpan.FromSeconds(10));
+                return Ok(true);
+            }
         }
 
         [Route("Kisi/Add")]
