@@ -49,7 +49,12 @@ namespace Rehber.API.Controllers
                     name = q.Name,
                     surname = q.Surname,
                     company = q.Company,
-                    iletisimList = q.IletisimList
+                    iletisimList = _rehberContext.IletisimBilgisis.Where(q => q.IsDeleted == false && q.KisiID == id).Select(q => new IletisimBilgisiDetailVM()
+                    {
+                        phone = q.Phone,
+                        email = q.EMail,
+                        address = q.Address
+                    }).ToList()
                 }).FirstOrDefault(x => x.id == id);
 
                 return detail;

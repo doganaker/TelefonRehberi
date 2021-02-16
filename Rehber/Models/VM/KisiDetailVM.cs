@@ -12,6 +12,6 @@ namespace Rehber.API.Models.VM
         public string name { get; set; }
         public string surname { get; set; }
         public string company { get; set; }
-        public List<IletisimBilgisi> iletisimList { get; set; }
+        public List<IletisimBilgisiDetailVM> iletisimList { get; set; }
     }
 }
