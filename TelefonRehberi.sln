@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30717.126
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rehber.API", "Rehber\Rehber.API.csproj", "{F08C00CB-4792-4A28-9B6F-3B3A416084F8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rehber.API", "Rehber\Rehber.API.csproj", "{F08C00CB-4792-4A28-9B6F-3B3A416084F8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rapor.API", "Rapor\Rapor.API.csproj", "{B15695B8-8F5B-44C4-AC45-43F939148002}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rapor.API", "Rapor\Rapor.API.csproj", "{B15695B8-8F5B-44C4-AC45-43F939148002}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TelefonRehberi.Test", "TelefonRehberi.Test\TelefonRehberi.Test.csproj", "{C9EF11A0-816C-4E1A-9370-ED138E8AB386}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{B15695B8-8F5B-44C4-AC45-43F939148002}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B15695B8-8F5B-44C4-AC45-43F939148002}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B15695B8-8F5B-44C4-AC45-43F939148002}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C9EF11A0-816C-4E1A-9370-ED138E8AB386}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9EF11A0-816C-4E1A-9370-ED138E8AB386}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9EF11A0-816C-4E1A-9370-ED138E8AB386}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9EF11A0-816C-4E1A-9370-ED138E8AB386}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
