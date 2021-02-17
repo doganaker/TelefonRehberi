@@ -18,6 +18,7 @@ namespace TelefonRehberi.Test.RehberAPI.ControllersTest
 
             IletisimBilgisiAddVM model = new IletisimBilgisiAddVM();
 
+            model.KisiId = 1;
             var result = ıletisimBilgisi.AddIletisimBilgisi(model);
 
             Assert.IsNotNull(result);
