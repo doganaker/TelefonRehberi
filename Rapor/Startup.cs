@@ -7,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 using Rapor.API.Models.ORM.Context;
 using System;
 using System.Collections.Generic;
@@ -37,7 +38,7 @@ namespace Rapor.API
 
             services.AddSingleton<ConsumerConfig>(consumerConfig);
 
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson(opt => opt.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);
             services.AddDbContext<RaporContext>();
         }
 

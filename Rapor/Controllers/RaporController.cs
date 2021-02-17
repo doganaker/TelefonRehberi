@@ -21,14 +21,9 @@ namespace Rapor.API.Controllers
             this._config = config;
         }
 
-        //public int KisiAmount()
-        //{
-        //    return 32;
-        //}
-
-        [Route("kisial")]
+        [Route("dataal")]
         [HttpGet]
-        public IActionResult GetKisi()
+        public IActionResult GetData()
         {
             using (var consumer = new ConsumerBuilder<Null, string>(_config).Build())
             {
@@ -36,10 +31,11 @@ namespace Rapor.API.Controllers
                 while (true)
                 {
                     var cr = consumer.Consume();
-                    var msg = cr.Message.Value;
+                    string msg = cr.Message.Value;
                     return Ok(msg);
                 }
             }
         }
+
     }
 }
